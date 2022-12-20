@@ -11,6 +11,7 @@ import is from "../../scripts/is"
 import useAuth from "../../hooks/useAuth"
 import AuthList from "../../components/AuthList"
 import ConnectedWallet from "./ConnectedWallet"
+import ManageConnectWallet from "../../../app/sections/ManageConnectWallet"
 
 export const useManageWallet = () => {
   const { t } = useTranslation()
@@ -85,6 +86,7 @@ const ManageWallets = () => {
         <ConnectedWallet>
           {list && <AuthList list={list} />}
           {!!available.length && <AuthList list={available} />}
+          <ManageConnectWallet />
         </ConnectedWallet>
       </Col>
     </Page>

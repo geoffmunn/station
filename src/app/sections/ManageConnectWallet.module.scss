@@ -1,0 +1,13 @@
+@import "mixins";
+
+.ConnectItem section {
+  background: var(--card-bg);
+  border: var(--border-width) solid var(--card-border);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.ConnectItem section a,
+.ConnectItem section button {
+  padding: var(--card-padding-small) var(--card-padding);
+}
