@@ -1,5 +1,9 @@
 import { useTranslation } from "react-i18next"
 import UsbIcon from "@mui/icons-material/Usb"
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline"
+import SettingsBackupRestoreIcon from "@mui/icons-material/SettingsBackupRestore"
+import KeyIcon from "@mui/icons-material/Key"
+import GroupsIcon from "@mui/icons-material/Groups"
 import { useWallet } from "@terra-rebels/wallet-provider"
 import { STATION } from "config/constants"
 import { RenderButton } from "types/components"
@@ -32,7 +36,7 @@ const ConnectWallet = ({ renderButton }: Props) => {
     </Button>
   )
 
-  const list = [
+  const extensionList = [
     ...availableConnections.map(({ type, identifier, name, icon }) => ({
       src: icon,
       children: name,
@@ -50,6 +54,29 @@ const ConnectWallet = ({ renderButton }: Props) => {
     })),
   ]
 
+  const connectionList = [
+    {
+      icon: <AddCircleOutlineIcon />,
+      to: "/auth/new",
+      children: t("New wallet"),
+    },
+    {
+      icon: <SettingsBackupRestoreIcon />,
+      to: "/auth/recover",
+      children: t("Recover wallet"),
+    },
+    {
+      icon: <KeyIcon />,
+      to: "/auth/import",
+      children: t("Import wallet"),
+    },
+    {
+      icon: <GroupsIcon />,
+      to: "/auth/multisig/new",
+      children: t("New multisig wallet"),
+    },
+  ]
+
   return (
     <ModalButton
       title={t("Connect wallet")}
@@ -57,8 +84,9 @@ const ConnectWallet = ({ renderButton }: Props) => {
       maxHeight
     >
       <Grid gap={20}>
+        <List list={connectionList} />
         <SwitchWallet />
-        <List list={available.length ? available : list} />
+        <List list={available.length ? available : extensionList} />
         {!!available.length && (
           <FormHelp>
             Use <ExternalLink href={STATION}>Rebel Station</ExternalLink> on the
